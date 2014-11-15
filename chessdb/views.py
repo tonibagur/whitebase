@@ -4,7 +4,6 @@ from rest_framework import generics
 from django.views.generic import TemplateView
 
 
-
 class GameList(generics.ListCreateAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer

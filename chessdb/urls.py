@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = patterns('',
-    url(r'^games/$', views.GameList.as_view()),
-    url(r'^games/(?P<pk>[0-9]+)/$', views.GameDetail.as_view()),
-    url(r'^views/(?P<template_name>\w+)/$', login_required(views.TemplateChessView.as_view(),login_url='/login/'), name='lchess_view'),
+    url(r'^games$', views.GameList.as_view()),
+    url(r'^games/(?P<pk>[0-9]+)$', views.GameDetail.as_view()),
+    url(r'^views/(?P<template_name>\w+)$', login_required(views.TemplateChessView.as_view(),login_url='/login/'), name='lchess_view'),
     url(r'^views/(?P<template_name>\w+)/(?P<pk>\d+)$', login_required(views.TemplateChessView.as_view(),login_url='/login/'), name='chess_view'),
 )
 
