@@ -12,7 +12,10 @@ app.config(function($interpolateProvider,$httpProvider){
 }]);
 
 
-app.controller('gameListController',function($scope){
-    $scope.test='hola';
+app.controller('gameListController',function($scope,$http){
+    $scope.games={};
+    $http.get('/chessdb/games').success(function(data){
+    	$scope.games=data;
+    });
 });
 

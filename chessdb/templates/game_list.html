@@ -10,6 +10,21 @@
 
 {% block ng_app %}app.game.list{% endblock %}
 
-{% block content %}<div ng-controller="gameListController">Contingut d'exemple:{$test$}</div>{% endblock %}
+{% block content %}
+	<div ng-controller="gameListController">
+		Partides:
+		<table>
+  			<tr ng-repeat="g in games.results">
+          <td>{$ g.id $}</td>
+    			<td>{$ g.white_player $}</td>
+    			<td>{$ g.black_player $}</td>
+    			<td>{$ g.opening $}</td>
+    			<td>{$ g.variation $}</td>
+          <td>{$ g.eco $}</td>          
+  			</tr>
+		</table>
+
+	</div>
+{% endblock %}
 
 

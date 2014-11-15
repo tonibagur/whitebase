@@ -20,6 +20,6 @@ class TemplateChessView(TemplateView):
 
     def get_context_data(self,**kwargs):
         context=super(TemplateChessView,self).get_context_data()
-        if 'pk' in kwargs:
-            context['id'] = int(kwargs['pk'])
+        if 'pk' in self.kwargs:
+            context['id'] = int(self.kwargs['pk'])
         return context
