@@ -1,4 +1,4 @@
-var app=angular.module('app.game.list',['ngCookies']);
+var app=angular.module('app.game.list',['ngCookies','game.services']);
 
 app.config(function($interpolateProvider,$httpProvider){
 	$interpolateProvider.startSymbol('{$');
@@ -17,5 +17,18 @@ app.controller('gameListController',function($scope,$http){
     $http.get('/chessdb/games').success(function(data){
     	$scope.games=data;
     });
+});
+
+app.controller('gameDetailController',function($scope,Game){
+    $scope.init=function(game_id)
+    {
+    	$scope.game=new Game();
+    	$scope.game.id=game_id;
+    	$scope.game.$get();
+    };
+    $scope.update_fen=function(fen)
+    {
+    	console.log(fen);
+    };
 });
 

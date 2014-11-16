@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block scripts %}
-
+<script src="/static/services.js?{% now "U" %}"></script>
 <script src="/static/ctrl_game_list.js?{% now "U" %}"></script>
 <script src="/static/js/chess.js"></script>
 <script src="/static/js/chessboard.js"></script>
@@ -38,9 +38,8 @@
 
 
 {% block content %}
-	<div ng-controller="gameDetailController">
-  id:{{id}}
-
+	<div ng-controller="gameDetailController" ng-init="init({{id}})">
+      <button ng-repeat="move in game.moves" ng-click="update_fen(move.fen)">{$ move.move $}</button>
 <!-- start example HTML -->
 <div id="board" style="width: 400px"></div>
 <p>Status: <span id="status"></span></p>
