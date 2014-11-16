@@ -13,10 +13,14 @@ class GameSerializer(serializers.ModelSerializer):
         s.seek(0)
         node=chess.pgn.read_game(s)
         moves=[{'move':'initial',
-                'fen':node.board().fen()}]
+                'fen':node.board().fen(),
+                'tempo':-1}]
+        i=0
         while node.variations:
             next_node=node.variations[0]
             moves.append({'move':node.board().san(next_node.move),
-                          'fen':next_node.board().fen()})
+                          'fen':next_node.board().fen(),
+                          'tempo':i})
             node=next_node
+            i+=1
         return moves

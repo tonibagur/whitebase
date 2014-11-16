@@ -24,11 +24,51 @@ app.controller('gameDetailController',function($scope,Game){
     {
     	$scope.game=new Game();
     	$scope.game.id=game_id;
-    	$scope.game.$get();
+    	$scope.game.$get().then(function(data){
+	    	var cfg = {
+	            draggable: true,
+	            position: $scope.game.moves[0].fen,
+	            pieceTheme: '/static/img/chesspieces/wikipedia/{piece}.png'
+	        };
+	        $scope.tempo = -1;
+        	$scope.board = new ChessBoard('board', cfg);    		
+    	});
     };
-    $scope.update_fen=function(fen)
+    $scope.update_tempo=function(tempo)
     {
-    	console.log(fen);
+    	$scope.tempo=tempo;
+    	$scope.board.position($scope.game.moves[tempo+1].fen);
     };
+
+    $scope.key_down=function($event)
+    {
+        if ($event.keyCode==39 || $event.keyCode==40){
+        	$scope.inc_tempo();
+        }
+        if ($event.keyCode==37 || $event.keyCode==38){
+        	$scope.dec_tempo();
+        }
+    };
+
+    $scope.inc_tempo=function()
+    {
+    	if ($scope.tempo < $scope.game.moves.length-2){
+    		$scope.update_tempo($scope.tempo+1);
+
+    	}
+
+    }
+
+    $scope.dec_tempo=function()
+    {
+    	if ($scope.tempo > -1){
+    		$scope.update_tempo($scope.tempo-1);
+
+    	}
+
+    }
+
+
+
 });
 

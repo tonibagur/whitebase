@@ -4,13 +4,16 @@
     <script src="/static/angular-1.3.0/angular.js"></script>
     <script src="/static/angular-1.3.0/angular-resource.js"></script>
     <script src="/static/angular-1.3.0/angular-cookies.js"></script>
+    <script src="/static/services.js?{% now "U" %}"></script>
+    <link rel="stylesheet" href="/static/css/chess.css" />
+
     {% block style %}
     {% endblock %}    
     {% block scripts %}
     {% endblock %}
 </head>
 
-<body ng-app="{% block ng_app %}{% endblock %}">
+<body ng-app="{% block ng_app %}{% endblock %}" {% block body_extra %}{% endblock %}>
 {% block content %}{% endblock %}
 </body>
 

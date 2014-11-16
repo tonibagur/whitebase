@@ -15,12 +15,13 @@
 		Partides:
 		<table>
   			<tr ng-repeat="g in games.results">
-          <td>{$ g.id $}</td>
+          <td><a href="/chessdb/views/game_detail/{$ g.id $}">{$ g.id $}</a></td>
     			<td>{$ g.white_player $}</td>
     			<td>{$ g.black_player $}</td>
     			<td>{$ g.opening $}</td>
     			<td>{$ g.variation $}</td>
-          <td>{$ g.eco $}</td>          
+          <td>{$ g.eco $}</td>     
+          <td>{$ g.result $}</td>               
   			</tr>
 		</table>
 
