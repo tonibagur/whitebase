@@ -40,7 +40,6 @@
 
 {% block content %}
 	<div >
-      Tempo:{$ tempo $}
       <span ng-if="move.tempo>-1" ng-repeat="move in game.moves">
         <span ng-if="move.tempo%2==0">{$ move.tempo/2 +1  $}.</span>
         <button ng-class="{currentmove:move.tempo==tempo}" ng-click="update_tempo(move.tempo)">{$ move.move $}</button>
