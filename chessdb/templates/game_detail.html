@@ -12,6 +12,7 @@
 <script src="/static/js/json3.min.js"></script>
 <script src="/static/js/prettify.js"></script>
 
+
 <link rel="stylesheet" href="/static/css/chessboard.css" />
 
 
@@ -39,13 +40,33 @@
  {% block body_extra %}ng-controller="gameDetailController" ng-init="init({{id}})" ng-keydown="key_down($event)"{% endblock %}
 
 {% block content %}
+{$ tempo $}
 	<div >
       <span ng-if="move.tempo>-1" ng-repeat="move in game.moves">
         <span ng-if="move.tempo%2==0">{$ move.tempo/2 +1  $}.</span>
         <button ng-class="{currentmove:move.tempo==tempo}" ng-click="update_tempo(move.tempo)">{$ move.move $}</button>
       </span>
       {$game.result$}
-      <div id="board" style="width: 400px"></div>
+          <div id="board" style="width: 400px">
+
+          </div>
+          <div class="bottomDiv" >
+                <svg width="400px" height="400px">
+
+                  <defs>
+                    <marker id="arrow" markerWidth="6.5" markerHeight="6.5" refx="1" refy="3" orient="auto">
+                        <path d="M1,0.5 L1,5 L5,3 L1,1" style="fill:red;" />
+                    </marker>
+                  </defs>
+
+                  <path ng-if="tempo>=0" ng-attr-d="{$ arrow $} "
+                        style="stroke:red; stroke-width: 3.0px; fill: none;
+                        marker-end: url(#arrow);"
+                  />
+                    
+                </svg>
+          </div>
+
 
 
 	</div>

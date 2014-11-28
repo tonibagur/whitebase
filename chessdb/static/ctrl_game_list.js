@@ -24,6 +24,7 @@ app.controller('gameDetailController',function($scope,Game){
     {
     	$scope.game=new Game();
     	$scope.game.id=game_id;
+        $scope.arrow="M149,263 L296,283";
     	$scope.game.$get().then(function(data){
 	    	var cfg = {
 	            draggable: true,
@@ -37,7 +38,29 @@ app.controller('gameDetailController',function($scope,Game){
     $scope.update_tempo=function(tempo)
     {
     	$scope.tempo=tempo;
-    	$scope.board.position($scope.game.moves[tempo+1].fen);
+        var move=$scope.game.moves[tempo+1];
+    	$scope.board.position(move.fen);
+        $scope.drawArrow(move.from,move.to);
+    };
+
+    $scope.drawArrow=function(from,to)
+    {
+        console.log($("#board"));
+        board=$("#board")[0]
+        offsetLeft=board.offsetLeft
+        offsetTop=board.offsetTop
+        square_from=$("div[data-square='" + from + "']")[0]
+        square_to=$("div[data-square='" + to + "']")[0]
+        xini=square_from.offsetLeft - offsetLeft + square_from.offsetWidth/2.;
+        yini=square_from.offsetTop - offsetTop + square_from.offsetHeight/2. +4 ;
+        xfin=square_to.offsetLeft - offsetLeft + square_to.offsetWidth/2.;
+        yfin=square_to.offsetTop - offsetTop + square_to.offsetHeight/2 +4;
+        m=(yfin-yini)/(xfin-xini);
+        n=yfin-m*xfin;
+        ynew=(yfin-yini)*0.95+yini;
+        xnew=(xfin-xini)*0.95+xini;
+        $scope.arrow="M"+xini+","+yini+" L"+xnew+","+ynew;
+
     };
 
     $scope.key_down=function($event)

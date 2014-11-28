@@ -1,3 +1,13 @@
 .currentmove { 
     background-color: gray;
 }
+
+
+.bottomDiv{
+	   /*z-index:-1;*/
+       position:relative;
+       bottom:400px;
+       left:0px;
+       display:bock;
+       pointer-events:none;
+}
