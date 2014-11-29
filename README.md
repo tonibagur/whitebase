@@ -15,6 +15,8 @@ anar a l'adreça http://localhost:8000/chessdb/views/game_list (llistat de parti
 
 * Implementar paginació al llistat de partides
 * Millorar look and feel
+* Pantalla de login amb django(tipus eurona/irvia)
+* Url inicial més amigable
 * Integració amb motor d'escacs
 * Tags partides
 * Buscador partides
