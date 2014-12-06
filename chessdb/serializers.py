@@ -7,7 +7,7 @@ from StringIO import StringIO
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-    moves=serializers.SerializerMethodField('get_moves')
+    moves=serializers.SerializerMethodField()
     def get_moves(self,obj):
         s=StringIO()
         s.write(obj.pgn)

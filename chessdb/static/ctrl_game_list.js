@@ -12,11 +12,27 @@ app.config(function($interpolateProvider,$httpProvider){
 }]);
 
 
-app.controller('gameListController',function($scope,$http){
+app.controller('gameListController',function($scope,$http,$window){
     $scope.games={};
-    $http.get('/chessdb/games').success(function(data){
-    	$scope.games=data;
-    });
+    $scope.Math=$window.Math;
+    $scope.page=1;
+    var get_games=function(page){
+        $scope.loading=true;
+        $http.get('/chessdb/games?page='+page.toString()).success(function(data){
+    	    console.log(data);
+    	    $scope.games=data;
+            $scope.loading=false;
+        });
+    };
+    $scope.get_prev=function(){
+        $scope.page=$scope.page-1;
+        get_games($scope.page);
+    };
+    $scope.get_next=function(){
+        $scope.page=$scope.page+1;
+        get_games($scope.page);
+    };
+    get_games($scope.page);
 });
 
 app.controller('gameDetailController',function($scope,Game){

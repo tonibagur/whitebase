@@ -1,5 +1,10 @@
 #whitebase
 
+##HOW TO INSTALL:
+
+pip install Django
+pip install djangorestframework
+pip install python-chess
 
 ##HOW TO USE:
 

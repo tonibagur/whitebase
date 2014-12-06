@@ -12,7 +12,7 @@
 
 {% block content %}
 	<div ng-controller="gameListController">
-		Partides:
+		Partides: 
 		<table>
   			<tr ng-repeat="g in games.results">
           <td><a href="/chessdb/views/game_detail/{$ g.id $}">{$ g.id $}</a></td>
@@ -24,7 +24,19 @@
           <td>{$ g.result $}</td>               
   			</tr>
 		</table>
-
+          <div ng-if="games.length!=0" class="row">          
+             <ul class="pagination right">
+               <li ng-click="get_prev()"><a href="" >&laquo;</a></li>
+               <li class="disabled"><a style="color:#333">  {$ page $}/{$ Math.ceil(games.count/10) $} </a></li>
+               <li ng-click="get_next()"><a href="">&raquo;</a></li>
+             </ul> 
+          </div>
+          <div ng-if="games.length==0">
+	     <p>
+		<label class="control-label">Sembla mentida, però no hi ha partides.</label>
+	     </p>
+          </div>
+          <img ng-show="loading" src="/static/img/spiffygif_30x30.gif"/>
 	</div>
 {% endblock %}
 
